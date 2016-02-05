@@ -19,8 +19,10 @@ Output:
 import sys
 
 def rename_read(num, line):
-    if num % 4 == 0 or num % 4 == 2:
+    if num % 4 in [0,2]:
        new_line = '.'.join(line.split(' ')[0].split('.')[:2]) + ' ' + ' '.join(line.split(' ')[1:])
+       read_number = line.split(' ')[0].split('.')[2]
+       new_line = new_line.replace('\n', '/%s\n' % read_number)
        return new_line
     else:
         return line
