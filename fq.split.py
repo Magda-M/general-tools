@@ -44,7 +44,10 @@ def fqsplit(fq, nchunks, nreps, paired, prefix=None):
     print >>sys.stderr, "num reads/read pairs:", fq_size
     print >>sys.stderr, "num chunks to split into:", nchunks
     
-    chunk_size = fq_size // nchunks
+    if fq_size % nchunks == 0 :
+        chunk_size = fq_size // nchunks
+    else:
+        chunk_size = 1 + (fq_size) // nchunks
     print >>sys.stderr, "chunk_size:", chunk_size
 
     for rep in range(1, nreps + 1):
