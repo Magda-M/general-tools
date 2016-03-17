@@ -38,7 +38,7 @@ def fqsplit(fq, nchunks, nreps, paired, prefix=None):
     if prefix == None: prefix = fq + ".split"
     prefix += "chunk-%i.rep-%i.fq"
 
-    fq_size = sum(1 for x in xopen(fq))
+    fq_size = sum(1 for x in xopen(fq) if len(x.strip("\r\n"))>0)
     assert fq_size % lines_per_read == 0
     fq_size /= lines_per_read # number of records
     print >>sys.stderr, "num reads/read pairs:", fq_size
